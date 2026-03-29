@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch Loan - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #fff5eb;
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background: #e8913a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .banner-card {
+            margin: 15px 20px;
+            background: linear-gradient(135deg, #ffb347 0%, #ffcc80 100%);
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner-card::after {
+            content: "💰📄";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            opacity: 0.9;
+        }
+        
+        .loan-tag {
+            background: #fff;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-block;
+            margin-bottom: 12px;
+            border: 2px solid #ffd700;
+        }
+        
+        .banner-text {
+            color: #5a4a3a;
+            font-size: 14px;
+            line-height: 1.5;
+            max-width: 60%;
+        }
+        
+        .main-card {
+            background: white;
+            margin: 15px 20px;
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .loan-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .loan-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #ffb347, #ff8c00);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border: 2px solid #e8913a;
+        }
+        
+        .loan-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .amount {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin: 10px 0 5px;
+        }
+        
+        .amount-label {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .details-box {
+            background: #fff8f0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        
+        .detail-label {
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        .detail-value {
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .select-section {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .select-title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        
+        .limit-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .limit-btn {
+            flex: 1;
+            padding: 12px 10px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .limit-btn.active {
+            border-color: #e8913a;
+            color: #e8913a;
+        }
+        
+        .limit-btn:not(.active) {
+            color: #bbb;
+        }
+        
+        .activate-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(180deg, #ffb347 0%, #ff8c00 100%);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+            transition: transform 0.2s;
+        }
+        
+        .activate-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .download-section {
+            margin: 20px;
+            text-align: center;
+        }
+        
+        .download-btn {
+            padding: 14px 30px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: #bbb;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        
+        .nav-item.active {
+            color: #e8913a;
+        }
+        
+        .nav-icon {
+            font-size: 22px;
+        }
+        
+        .content-spacer {
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="width: 40px;"></div>
+        <h1>Home</h1>
+        <div class="profile-icon">👤</div>
+    </div>
+    
+    <div class="banner-card">
+        <div class="loan-tag">Branch Loan</div>
+        <div class="banner-text">
+            Thank you for choosing us,<br>
+            we hope we can help you here.
+        </div>
+    </div>
+    
+    <div class="main-card">
+        <div class="loan-header">
+            <div class="loan-icon">₹</div>
+            <span class="loan-title">Branch Loan</span>
+        </div>
+        
+        <div class="amount">₹ 20,000</div>
+        <div class="amount-label">Amount Range</div>
+        
+        <div class="details-box">
+            <div class="detail-row">
+                <span class="detail-label">Interest :</span>
+                <span class="detail-value">0.05%/day</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Terms :</span>
+                <span class="detail-value">120 days</span>
+            </div>
+        </div>
+        
+        <div class="select-section">
+            <div class="select-title">Please Select</div>
+            <div class="limit-buttons">
+                <button class="limit-btn active">Available Limit</button>
+                <button class="limit-btn">Used Limit</button>
+                <button class="limit-btn">Total Limit</button>
+            </div>
+        </div>
+        
+        <button class="activate-btn">Activate Now</button>
+    </div>
+    
+    <div class="download-section">
+        <a href="BranchLoan_v1.0.1_2.apk" download class="download-btn">
+            ⬇ Download APK
+        </a>
+    </div>
+    
+    <div class="content-spacer"></div>
+    
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">📋</span>
+            <span>OrderList</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span>MyAccount</span>
+        </a>
+    </div>
+    
+    <script>
+        document.querySelectorAll('.limit-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.limit-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
